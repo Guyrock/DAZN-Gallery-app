@@ -38,7 +38,7 @@ class ImageListAdapter(
                     .into(holder.imageView)
             }
             holder.imageView.setOnClickListener { click ->
-                listener.showDetails(position,it)
+                listener.showDetails(position)
             }
         }
     }
@@ -52,6 +52,6 @@ class ImageListAdapter(
     }
 
     interface ImageClickListener{
-        fun showDetails(pos:Int,imgDetail: ImgDetail)
+        fun showDetails(pos:Int)
     }
 }

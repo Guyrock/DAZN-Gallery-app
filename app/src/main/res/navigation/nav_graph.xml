@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
@@ -18,8 +19,5 @@
         android:name="com.dazn.gallery.ui.ImageDetails"
         android:label="fragment_image_details"
         tools:layout="@layout/fragment_image_details" >
-        <action
-            android:id="@+id/action_imageDetails_to_listFragment"
-            app:destination="@id/listFragment" />
     </fragment>
 </navigation>

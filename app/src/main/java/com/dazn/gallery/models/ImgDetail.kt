@@ -8,4 +8,4 @@ data class ImgDetail(
     val explanation:String,
     val date:String,
     val hdurl:String?
-) : Serializable
+)
