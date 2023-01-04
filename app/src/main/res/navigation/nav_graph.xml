@@ -8,5 +8,18 @@
         android:id="@+id/listFragment"
         android:name="com.dazn.gallery.ui.ImageList"
         android:label="img_list_frag"
-        tools:layout="@layout/fragment_image_list" />
+        tools:layout="@layout/fragment_image_list" >
+        <action
+            android:id="@+id/action_listFragment_to_imageDetails"
+            app:destination="@id/imageDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageDetails"
+        android:name="com.dazn.gallery.ui.ImageDetails"
+        android:label="fragment_image_details"
+        tools:layout="@layout/fragment_image_details" >
+        <action
+            android:id="@+id/action_imageDetails_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 </navigation>

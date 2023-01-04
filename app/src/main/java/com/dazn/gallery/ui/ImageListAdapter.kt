@@ -13,7 +13,8 @@ import com.dazn.gallery.models.ImgDetail
 
 class ImageListAdapter(
     private val context:Context,
-    private val images:ArrayList<ImgDetail>
+    private val images:ArrayList<ImgDetail>,
+    private val listener:ImageClickListener
 ) : RecyclerView.Adapter<ImageListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +28,7 @@ class ImageListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         images[position].also {
-            it.url?.let { imageToLoad->
+            it.url?.let { imageToLoad ->
                 Glide.with(context)
                     .load(imageToLoad.replace("http:","https:"))
                     .into(holder.imageView)
@@ -35,6 +36,9 @@ class ImageListAdapter(
                 Glide.with(context)
                     .load(R.drawable.ic_launcher_background)
                     .into(holder.imageView)
+            }
+            holder.imageView.setOnClickListener { click ->
+                listener.showDetails(position,it)
             }
         }
     }
@@ -45,5 +49,9 @@ class ImageListAdapter(
 
     class ViewHolder (view : View) : RecyclerView.ViewHolder(view){
         val imageView : ImageView = view.findViewById(R.id.smallImg)
+    }
+
+    interface ImageClickListener{
+        fun showDetails(pos:Int,imgDetail: ImgDetail)
     }
 }
