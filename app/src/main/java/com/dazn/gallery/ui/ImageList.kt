@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dazn.gallery.R
+import com.dazn.gallery.models.ImgDetail
 import com.dazn.gallery.viewmodels.ImageViewModel
 import kotlinx.android.synthetic.main.fragment_image_list.*
 
@@ -22,6 +23,7 @@ class ImageList : Fragment() {
     private var param2: String? = null
     private val viewModel : ImageViewModel by viewModels()
     private lateinit var imgListAdapter : ImageListAdapter
+    private lateinit var imgList: ArrayList<ImgDetail>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,8 @@ class ImageList : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        imgListAdapter = ImageListAdapter(requireContext())
+        imgList = ArrayList()
+        imgListAdapter = ImageListAdapter(requireContext(),imgList)
         viewModel.getDataFromJson(requireContext())
     }
 
@@ -49,7 +52,8 @@ class ImageList : Fragment() {
             adapter = imgListAdapter
         }
         viewModel.imagesFromJson.observe(viewLifecycleOwner){
-            imgListAdapter.submitImages(it)
+            imgList.addAll(it)
+            imgListAdapter.notifyDataSetChanged()
         }
     }
 

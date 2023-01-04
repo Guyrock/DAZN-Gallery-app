@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dazn.gallery.R
 import com.dazn.gallery.models.ImgDetail
 
 class ImageListAdapter(
-    private val context:Context
+    private val context:Context,
+    private val images:ArrayList<ImgDetail>
 ) : RecyclerView.Adapter<ImageListAdapter.ViewHolder>() {
-    private val images : ArrayList<ImgDetail> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -28,7 +29,7 @@ class ImageListAdapter(
         images[position].also {
             it.url?.let { imageToLoad->
                 Glide.with(context)
-                    .load(imageToLoad.replace("http","https"))
+                    .load(imageToLoad.replace("http:","https:"))
                     .into(holder.imageView)
             } ?: kotlin.run {
                 Glide.with(context)
@@ -40,11 +41,6 @@ class ImageListAdapter(
 
     override fun getItemCount(): Int {
         return images.size
-    }
-
-    fun submitImages(imgs : List<ImgDetail>){
-        images.clear()
-        images.addAll(imgs)
     }
 
     class ViewHolder (view : View) : RecyclerView.ViewHolder(view){

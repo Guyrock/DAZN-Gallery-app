@@ -10,13 +10,13 @@ import com.google.gson.reflect.TypeToken
 
 class ImageViewModel : ViewModel() {
 
-    private val _imagesFromJson = MutableLiveData<List<ImgDetail>>()
+    private val _imagesFromJson = MutableLiveData<ArrayList<ImgDetail>>()
     val imagesFromJson = _imagesFromJson
 
     fun getDataFromJson(context:Context){
         val jsonString = AppUtils().getDataFromJsonFile(context,"nasa_details.json")
         val gson = Gson()
-        val listImages = object : TypeToken<List<ImgDetail>>(){}.type
+        val listImages = object : TypeToken<ArrayList<ImgDetail>>(){}.type
         _imagesFromJson.value = gson.fromJson(jsonString,listImages)
     }
 }

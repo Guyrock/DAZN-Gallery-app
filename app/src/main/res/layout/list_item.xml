@@ -17,7 +17,8 @@
             android:adjustViewBounds="true"
             android:id="@+id/smallImg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
+            android:scaleType="center"
             tools:src="@tools:sample/avatars"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
